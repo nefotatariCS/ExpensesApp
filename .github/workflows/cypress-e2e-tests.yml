@@ -67,8 +67,8 @@ jobs:
         run: sleep 30
 
       - name: Restore database
-        run: |
-          pg_restore -U postgres -d ExpensesApp -h localhost -p 5432 -v ExpensesAppDatabase.sql
+         run: |
+          pg_restore -U postgres -d ExpensesApp -h localhost -p 5432 --clean --if-exists -v ExpensesAppDatabase.sql
         env:
           PGPASSWORD: mypassword
 
