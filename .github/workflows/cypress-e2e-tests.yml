@@ -31,6 +31,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Wait for Postgres to be ready
+        run: |
+          until pg_isready -h localhost -p 5432 -U postgres; do
+            echo "Waiting for Postgres..."
+            sleep 2
+          done
+
+      - name: Restore database
+        run: |
+          pg_restore -U postgres -d ExpensesApp -h localhost -p 5432 --clean --if-exists -v ExpensesAppDatabase.sql
+        env:
+          PGPASSWORD: mypassword
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -65,12 +78,6 @@ jobs:
 
       - name: Wait for frontend to be ready
         run: sleep 30
-
-    #   - name: Restore database
-    #      run: |
-    #       pg_restore -U postgres -d ExpensesApp -h localhost -p 5432 --clean --if-exists -v ExpensesAppDatabase.sql
-    #     env:
-    #       PGPASSWORD: mypassword
 
       - name: Run Cypress tests
         run: |
