@@ -1,0 +1,78 @@
+name: Cypress Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  cypress-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:latest
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: ExpensesApp
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: sead
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install backend dependencies
+        run: |
+          cd expenses-be
+          npm install
+
+      - name: Start backend server
+        run: |
+          cd expenses-be
+          npm start &
+        env:
+          DATABASE_URL: postgresql://myuser:mypassword@localhost:5432/mydb
+
+      - name: Wait for backend to be ready
+        run: sleep 30
+
+      - name: Install frontend dependencies
+        run: |
+          cd expenses-fe
+          npm install
+
+      - name: Start frontend server
+        run: |
+          cd expenses-fe
+          npm start &
+        env:
+          BACKEND_URL: http://localhost:3000
+
+      - name: Wait for frontend to be ready
+        run: sleep 30
+
+      - name: Run database script
+        run: |
+          psql postgresql://myuser:mypassword@localhost:5432/mydb -f expenses-be/ExpensesAppDatabase.sql
+
+      - name: Run Cypress tests
+        run: |
+          cd expenses-fe
+          npx cypress run
+        env:
+          CYPRESS_BASE_URL: http://localhost:4200
