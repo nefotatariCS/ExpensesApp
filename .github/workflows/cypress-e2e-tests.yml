@@ -72,7 +72,7 @@ jobs:
       - name: Start frontend server
         run: |
           cd expenses-fe
-          npm start &
+          ng serve
         env:
           BACKEND_URL: http://localhost:3000
 
