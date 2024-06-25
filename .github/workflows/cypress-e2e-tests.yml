@@ -20,7 +20,7 @@ jobs:
         env:
           POSTGRES_DB: ExpensesApp
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: sead
+          POSTGRES_PASSWORD: mypassword
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -46,7 +46,7 @@ jobs:
           cd expenses-be
           npm start &
         env:
-          DATABASE_URL: postgresql://myuser:mypassword@localhost:5432/mydb
+          DATABASE_URL: postgresql://postgres:mypassword@localhost:5432/ExpensesApp
 
       - name: Wait for backend to be ready
         run: sleep 30
@@ -68,7 +68,7 @@ jobs:
 
       - name: Run database script
         run: |
-          psql postgresql://myuser:mypassword@localhost:5432/mydb -f expenses-be/ExpensesAppDatabase.sql
+          psql postgresql://postgres:mypassword@localhost:5432/ExpensesApp -f expenses-be/ExpensesAppDatabase.sql
 
       - name: Run Cypress tests
         run: |
