@@ -68,7 +68,7 @@ jobs:
 
       - name: Run database script
         run: |
-          psql postgresql://postgres:mypassword@localhost:5432/ExpensesApp -f expenses-be/ExpensesAppDatabase.sql
+          psql postgresql://postgres:mypassword@localhost:5432/ExpensesApp -f ExpensesAppDatabase.sql
 
       - name: Run Cypress tests
         run: |
