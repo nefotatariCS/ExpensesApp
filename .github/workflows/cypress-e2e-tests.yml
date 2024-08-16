@@ -67,12 +67,16 @@ jobs:
 
       - name: Install frontend dependencies
         run: |
+          pwd
           cd expenses-fe
+          pwd
           npm install
 
       - name: Start frontend server
         run: |
+          pwd
           cd expenses-fe
+          pwd
           ng serve
         env:
           BACKEND_URL: http://localhost:3000
