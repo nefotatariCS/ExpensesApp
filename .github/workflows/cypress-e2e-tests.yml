@@ -77,12 +77,18 @@ jobs:
       - name: Start frontend server
         run: |
           cd expenses-fe
-          nohup ng serve &
+          nohup ng serve --port 4200 &
         env:
           BACKEND_URL: http://localhost:3000
 
       - name: Wait for frontend to be ready
-        run: sleep 30
+        run: |
+          echo "Waiting for frontend to be ready on http://localhost:4200..."
+          until curl -s http://localhost:4200 | grep -q "<title>"; do
+            echo "Still waiting..."
+            sleep 5
+          done
+          echo "Frontend is up and running at http://localhost:4200"
 
       - name: Run Cypress tests
         run: |
