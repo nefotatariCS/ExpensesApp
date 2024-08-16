@@ -89,7 +89,7 @@ jobs:
           cd expenses-fe
           npx cypress run
         env:
-          CYPRESS_BASE_URL: http://localhost:3000
+          CYPRESS_BASE_URL: http://localhost:4200
       - name: Upload Cypress screenshots
         if: failure()
         uses: actions/upload-artifact@v2
