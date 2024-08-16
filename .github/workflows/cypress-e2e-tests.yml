@@ -55,6 +55,11 @@ jobs:
           cd expenses-be
           npm install
 
+      - name: Run backend unit tests
+        run: |
+          cd expenses-be
+          npm test
+
       - name: Start backend server
         run: |
           cd expenses-be
@@ -73,6 +78,11 @@ jobs:
       - name: Install Angular CLI
         run: |
           npm install -g @angular/cli
+
+      - name: Run frontend unit tests
+        run: |
+          cd expenses-fe
+          npm test
 
       - name: Start frontend server
         run: |
