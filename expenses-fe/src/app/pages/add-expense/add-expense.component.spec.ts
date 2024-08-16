@@ -60,7 +60,7 @@ describe('AddExpenseComponent', () => {
     component.expenseForm.controls['currency'].setValue('');
     component.expenseForm.controls['amount'].setValue('');
     component.expenseForm.controls['transactionDate'].setValue('');
-    expect(component.expenseForm.invalid).toBeFalse();
+    expect(component.expenseForm.invalid).toBeTrue();
   });
 
   it('should validate the form as valid when fields are filled', () => {
