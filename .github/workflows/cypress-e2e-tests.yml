@@ -72,6 +72,10 @@ jobs:
           pwd
           npm install
 
+      - name: Install Angular CLI
+        run: |
+          npm install -g @angular/cli
+
       - name: Start frontend server
         run: |
           pwd
