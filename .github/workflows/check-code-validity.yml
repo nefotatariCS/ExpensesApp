@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
@@ -23,10 +23,23 @@ jobs:
           node-version: "18"
 
       - name: Install Dependencies
-        run: npm install
+        run: |
+          pwd
+          cd expenses-be
+          npm install
 
       - name: Run Prettier
         run: npx prettier --write .
+
+      - name: Install frontend dependencies
+        run: |
+          pwd
+          cd expenses-fe
+          npm install
+
+      - name: Install Angular CLI
+        run: |
+          npm install -g @angular/cli
 
       - name: Check for changes
         run: |
