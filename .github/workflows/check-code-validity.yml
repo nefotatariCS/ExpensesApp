@@ -4,7 +4,7 @@ on:
   push:
 permissions:
   contents: write  # Allow write access to repository contents
-  actions: write  # Allow writing/updating workflows
+  workflows: write  # Allow writing/updating workflows
   
 jobs:
   prettier:
