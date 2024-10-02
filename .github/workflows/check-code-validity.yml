@@ -2,9 +2,6 @@ name: Prettier Formatting
 
 on:
   push:
-    branches:
-      - main
-      - Add-Unit-Tests
   pull_request:
     branches:
       - main
