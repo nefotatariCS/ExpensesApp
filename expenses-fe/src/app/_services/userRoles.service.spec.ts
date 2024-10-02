@@ -55,7 +55,7 @@ describe('UserRoleService', () => {
     });
 
     const req = httpMock.expectOne(
-      `${environment.apiUrl}/api/userRole/getById/${userRoleId}`
+      `${environment.apiUrl}/api/userRole/getById/${userRoleId}`,
     );
     expect(req.request.method).toBe('GET');
     expect(req.request.headers.get('x-access-token')).toBe(token);

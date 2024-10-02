@@ -20,7 +20,7 @@ export class AddExpenseComponent {
   constructor(
     private formBuilder: FormBuilder,
     private expenseService: ExpenseService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {
     const userString = localStorage.getItem('user');
     if (userString) {
@@ -57,7 +57,7 @@ export class AddExpenseComponent {
             .then((expenseData) => {
               this.expenseForm.patchValue(expenseData);
               this.expenseForm.controls['transactionDate'].setValue(
-                new Date(expenseData.transactionDate)
+                new Date(expenseData.transactionDate),
               );
             })
             .catch((error: any) => {
@@ -93,7 +93,7 @@ export class AddExpenseComponent {
           .updateExpensesById(
             this.accessToken,
             newExpenseObject,
-            this.updatedExpenseId
+            this.updatedExpenseId,
           )
           .then((response) => {
             console.log('Expense updated successfully:', response);

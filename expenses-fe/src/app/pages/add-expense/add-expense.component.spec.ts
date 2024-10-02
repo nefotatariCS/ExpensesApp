@@ -102,7 +102,7 @@ describe('AddExpenseComponent', () => {
         currency: 'USD',
         amount: '100',
       }),
-      1
+      1,
     );
   });
 

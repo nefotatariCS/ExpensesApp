@@ -69,7 +69,7 @@ async function updateUserById(userId, updatedUserData) {
 async function disableUser(userId) {
   try {
     logInfo(
-      `We are at disableUser  in service. User to be disabled is: ${userId}`
+      `We are at disableUser  in service. User to be disabled is: ${userId}`,
     );
     const user = await User.findByPk(userId);
 

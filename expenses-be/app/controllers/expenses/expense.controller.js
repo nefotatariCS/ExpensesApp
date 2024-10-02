@@ -58,12 +58,12 @@ const updateExpensesById = async (req, res) => {
   const updatedExpenseData = req.body;
   console.log("tesssss", expenseId, updatedExpenseData);
   logInfo(
-    `We are at updateExpensesById at controller. Updated expense is  ${updatedExpenseData}`
+    `We are at updateExpensesById at controller. Updated expense is  ${updatedExpenseData}`,
   );
   try {
     const updatedExpense = await expensesService.updateExpenseById(
       expenseId,
-      updatedExpenseData
+      updatedExpenseData,
     );
     res.status(200).json(updatedExpense);
   } catch (error) {

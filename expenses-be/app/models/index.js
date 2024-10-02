@@ -26,7 +26,7 @@ db.SYSTEMROLES = ["operator", "admin"];
 
 db.expenses = require("../models/expenses/expense.model.js")(
   sequelize,
-  Sequelize
+  Sequelize,
 );
 
 db.user.hasMany(db.expenses, { as: "expenseId" });

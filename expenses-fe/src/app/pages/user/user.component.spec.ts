@@ -35,7 +35,7 @@ describe('UserComponent', () => {
           { id: 1, userRoleDescription: 'Admin' },
           { id: 2, userRoleDescription: 'User' },
         ],
-      })
+      }),
     );
 
     userServiceMock.getAllUsers.and.returnValue(
@@ -44,7 +44,7 @@ describe('UserComponent', () => {
           { id: 1, userName: 'john', userRoleId: 1 },
           { id: 2, userName: 'jane', userRoleId: 2 },
         ],
-      })
+      }),
     );
 
     await TestBed.configureTestingModule({
@@ -68,7 +68,7 @@ describe('UserComponent', () => {
   it('should fetch and set all user roles on initialization', async () => {
     await component.ngOnInit();
     expect(userRoleServiceMock.getAllUserRoles).toHaveBeenCalledWith(
-      'mockAccessToken'
+      'mockAccessToken',
     );
     expect(component.allUserRoles.length).toBe(2); // Check if user roles were set correctly
   });

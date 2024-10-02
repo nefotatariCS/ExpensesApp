@@ -22,7 +22,7 @@ export class UserComponent {
 
   constructor(
     private userService: UserService,
-    private userRoleService: UserRoleService
+    private userRoleService: UserRoleService,
   ) {
     // Safely parse the localStorage user item
     const userString = localStorage.getItem('user');
@@ -53,7 +53,7 @@ export class UserComponent {
         for (let i = 0; i < this.allUsers.length; i++) {
           const userRoleName = this.getUserRoleName(
             this.allUserRoles,
-            this.allUsers[i].userRoleId
+            this.allUsers[i].userRoleId,
           );
           this.allUsers[i].userRoleName = userRoleName;
         }

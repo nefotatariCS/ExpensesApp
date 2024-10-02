@@ -39,7 +39,7 @@ exports.getUserRolesById = async (req, res) => {
   try {
     const userRoleId = req.params.userRoleId;
     logInfo(
-      `We are at getUserRolesById in controller. User roles id is: ${userRoleId}`
+      `We are at getUserRolesById in controller. User roles id is: ${userRoleId}`,
     );
     const userRoleById = await userRoleService.getUserRoleById(userRoleId);
     if (userRoleById) {

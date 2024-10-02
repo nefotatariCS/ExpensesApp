@@ -9,7 +9,10 @@ import { AllExpnesesReponse, Expense } from '../_models/expense';
   providedIn: 'root',
 })
 export class ExpenseService {
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+  ) {}
 
   getAllExpenses(token: string): Promise<AllExpnesesReponse> {
     const url = `${environment.apiUrl}/api/expenses/getAll`;
@@ -60,7 +63,7 @@ export class ExpenseService {
   async updateExpensesById(
     token: string,
     newUserObject: any,
-    expenseId: number
+    expenseId: number,
   ) {
     const url = `${environment.apiUrl}/api/expenses/updateExpensesById/${expenseId}`;
     const headers = new HttpHeaders({

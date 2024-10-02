@@ -68,13 +68,13 @@ describe('DashboardComponent', () => {
       ],
     };
     expenseServiceMock.getAllExpenses.and.returnValue(
-      Promise.resolve(mockExpenses)
+      Promise.resolve(mockExpenses),
     );
 
     await component.ngOnInit();
 
     expect(expenseServiceMock.getAllExpenses).toHaveBeenCalledWith(
-      'mockAccessToken'
+      'mockAccessToken',
     );
     expect(component.allExpensesResponse).toEqual(mockExpenses);
     expect(component.expenses).toEqual(mockExpenses.expenses);
@@ -92,7 +92,7 @@ describe('DashboardComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     expect(console.error).toHaveBeenCalledWith(
-      'No user data found in localStorage'
+      'No user data found in localStorage',
     );
   });
 });

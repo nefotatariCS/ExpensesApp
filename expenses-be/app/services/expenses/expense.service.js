@@ -21,7 +21,7 @@ async function getAll() {
 async function getExpenseById(expenseId) {
   try {
     logInfo(
-      `We are at getExpenseById in service. Expense id is : ${expenseId}`
+      `We are at getExpenseById in service. Expense id is : ${expenseId}`,
     );
     const expenseById = await Expenses.findByPk(expenseId);
     return expenseById || null;
@@ -44,7 +44,7 @@ async function addNew(expenseData) {
 async function updateExpenseById(expenseId, updatedExpenseData) {
   try {
     logInfo(
-      `We are at updateExpenseById in service. The Expenses id is: ${expenseId}`
+      `We are at updateExpenseById in service. The Expenses id is: ${expenseId}`,
     );
 
     const expense = await Expenses.findByPk(expenseId);

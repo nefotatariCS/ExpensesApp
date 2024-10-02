@@ -35,7 +35,7 @@ export class AddUserComponent {
     private formBuilder: FormBuilder,
     private userService: UserService,
     private userRoleService: UserRoleService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {
     const userString = localStorage.getItem('user');
     if (userString) {
@@ -59,7 +59,7 @@ export class AddUserComponent {
         [
           Validators.required,
           Validators.pattern(
-            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
           ),
         ],
       ],
@@ -98,10 +98,10 @@ export class AddUserComponent {
             .then((userData) => {
               this.userForm.patchValue(userData);
               this.userForm.controls['userRole'].setValue(
-                this.getObjectById(this.allUserRoles, userData.userRoleId)
+                this.getObjectById(this.allUserRoles, userData.userRoleId),
               );
               this.userForm.controls['gender'].setValue(
-                this.getObjectByCode(this.genderOptions, userData.gender)
+                this.getObjectByCode(this.genderOptions, userData.gender),
               );
             })
             .catch((error) => {
