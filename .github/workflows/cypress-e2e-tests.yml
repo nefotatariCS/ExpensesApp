@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - Add-Unit-Tests
   pull_request:
     branches:
       - main
@@ -47,12 +48,17 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: "18"
 
       - name: Install backend dependencies
         run: |
           cd expenses-be
           npm install
+
+      - name: Run backend unit tests
+        run: |
+          cd expenses-be
+          npm test
 
       - name: Start backend server
         run: |
@@ -69,25 +75,40 @@ jobs:
           cd expenses-fe
           npm install
 
+      - name: Install Angular CLI
+        run: |
+          npm install -g @angular/cli
+
+      - name: Run frontend unit tests
+        run: |
+          cd expenses-fe
+          npm test
+
       - name: Start frontend server
         run: |
           cd expenses-fe
-          ng serve
+          nohup ng serve --port 4200 &
         env:
           BACKEND_URL: http://localhost:3000
 
       - name: Wait for frontend to be ready
-        run: sleep 30
+        run: |
+          echo "Waiting for frontend to be ready on http://localhost:4200..."
+          until curl -s http://localhost:4200 | grep -q "<title>"; do
+            echo "Still waiting..."
+            sleep 5
+          done
+          echo "Frontend is up and running at http://localhost:4200"
 
       - name: Run Cypress tests
         run: |
           cd expenses-fe
           npx cypress run
         env:
-          CYPRESS_BASE_URL: http://localhost:3000
+          CYPRESS_BASE_URL: http://localhost:4200
       - name: Upload Cypress screenshots
         if: failure()
         uses: actions/upload-artifact@v2
         with:
-           name: cypress-screenshots
-           path: expenses-fe/cypress/screenshots
+          name: cypress-screenshots
+          path: expenses-fe/cypress/screenshots

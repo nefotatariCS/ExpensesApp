@@ -14,14 +14,26 @@ export class AddExpenseComponent {
   action = '';
   updatedExpenseId!: number;
 
-  userObject = JSON.parse(localStorage['user']);
-  accessToken = this.userObject.accessToken;
+  userObject: any;
+  accessToken: string | undefined;
 
   constructor(
     private formBuilder: FormBuilder,
     private expenseService: ExpenseService,
     private route: ActivatedRoute
   ) {
+    const userString = localStorage.getItem('user');
+    if (userString) {
+      try {
+        this.userObject = JSON.parse(userString);
+        this.accessToken = this.userObject.accessToken;
+      } catch (error) {
+        console.error('Error parsing user data from localStorage', error);
+      }
+    } else {
+      console.error('No user data found in localStorage');
+    }
+
     this.expenseForm = this.formBuilder.group({
       description: ['', Validators.required],
       currency: ['', Validators.required],
@@ -31,21 +43,17 @@ export class AddExpenseComponent {
   }
 
   ngOnInit() {
-    this.expenseForm = this.formBuilder.group({
-      description: ['', Validators.required],
-      currency: ['', Validators.required],
-      amount: ['', Validators.required],
-      transactionDate: ['', Validators.required],
-    });
-
     this.route.queryParams.subscribe((params) => {
       this.updatedExpenseId = Number(params['expenseId']);
       this.action = params['action'];
 
-      if (this.updatedExpenseId !== undefined) {
-        if (!isNaN(Number(this.updatedExpenseId))) {
+      if (
+        this.updatedExpenseId !== undefined &&
+        !isNaN(this.updatedExpenseId)
+      ) {
+        if (this.accessToken) {
           this.expenseService
-            .getExpenseById(Number(this.updatedExpenseId), this.accessToken)
+            .getExpenseById(this.updatedExpenseId, this.accessToken)
             .then((expenseData) => {
               this.expenseForm.patchValue(expenseData);
               this.expenseForm.controls['transactionDate'].setValue(
@@ -53,43 +61,60 @@ export class AddExpenseComponent {
               );
             })
             .catch((error: any) => {
-              console.error('Error getting user by ID', error);
+              console.error('Error getting expense by ID', error);
             });
         } else {
-          console.error('Invalid user ID:', this.updatedExpenseId);
+          console.error('Access token is missing');
         }
       } else {
-        console.error('User ID is not provided.');
+        console.error('Invalid or missing expense ID:', this.updatedExpenseId);
       }
     });
   }
 
   onSubmit() {
     if (this.expenseForm.invalid) {
-      this.error = 'Fill all fileds';
+      this.error = 'Fill all fields';
       return;
     }
 
     this.error = '';
     const formDataValue = this.expenseForm.value;
-    const newContactRoleObject = {
+    const newExpenseObject = {
       description: formDataValue.description,
       currency: formDataValue.currency,
       amount: formDataValue.amount,
       transactionDate: formDataValue.transactionDate,
     };
 
-    if (this.action === 'update') {
-      this.expenseService.updateExpensesById(
-        this.accessToken,
-        newContactRoleObject,
-        this.updatedExpenseId
-      );
+    if (this.accessToken) {
+      if (this.action === 'update') {
+        this.expenseService
+          .updateExpensesById(
+            this.accessToken,
+            newExpenseObject,
+            this.updatedExpenseId
+          )
+          .then((response) => {
+            console.log('Expense updated successfully:', response);
+          })
+          .catch((error) => {
+            console.error('Error updating expense:', error);
+            this.error = error;
+          });
+      } else {
+        this.expenseService
+          .createNewExpense(this.accessToken, newExpenseObject)
+          .then((response) => {
+            console.log('Expense created successfully:', response);
+          })
+          .catch((error) => {
+            console.error('Error creating expense:', error);
+            this.error = error;
+          });
+      }
     } else {
-      this.expenseService.createNewExpense(
-        this.accessToken,
-        newContactRoleObject
-      );
+      console.error('Access token is missing');
     }
   }
 }
