@@ -50,5 +50,5 @@ jobs:
             echo "No changes detected"
           else
             git commit -m "Apply Prettier formatting"
-            git push
+            git push origin HEAD:$GITHUB_REF_NAME
           fi
