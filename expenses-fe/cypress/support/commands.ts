@@ -36,17 +36,17 @@
 //   }
 // }
 declare namespace Cypress {
-    interface Chainable<Subject = any> {
-        login(userName: string, pass: string): void;
-        logOut():any;
-    }
+  interface Chainable<Subject = any> {
+    login(userName: string, pass: string): void;
+    logOut(): any;
+  }
 }
 Cypress.Commands.add('login', (userName, pass) => {
-    cy.get('h4').contains('Expeses Software').should('exist')
-    cy.get('[formcontrolname="userName"]').should('exist').type(userName)
-    cy.get('[formcontrolname="password"]').should('exist').type(pass)
-    cy.get('button').contains('Login').click()
-})
+  cy.get('h4').contains('Expeses Software').should('exist');
+  cy.get('[formcontrolname="userName"]').should('exist').type(userName);
+  cy.get('[formcontrolname="password"]').should('exist').type(pass);
+  cy.get('button').contains('Login').click();
+});
 Cypress.Commands.add('logOut', () => {
-    cy.get('.logOutButton').click()
-})
+  cy.get('.logOutButton').click();
+});

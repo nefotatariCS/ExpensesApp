@@ -6,7 +6,7 @@ const userRoleController = require("../../controllers/users/userRole.controller"
 router.use(function (req, res, next) {
   res.header(
     "Access-Control-Allow-Headers",
-    "x-access-token, Origin, Content-Type, Accept"
+    "x-access-token, Origin, Content-Type, Accept",
   );
   next();
 });
@@ -14,19 +14,19 @@ router.use(function (req, res, next) {
 router.get(
   "/getAll",
   [authJwt.verifyToken],
-  userRoleController.getAllUserRoles
+  userRoleController.getAllUserRoles,
 );
 
 router.get(
   "getAllActive",
   [authJwt.verifyToken],
-  userRoleController.getAllActiveUserRoles
+  userRoleController.getAllActiveUserRoles,
 );
 
 router.get(
   "getById/:userRoleId",
   [authJwt.verifyToken],
-  userRoleController.getUserRolesById
+  userRoleController.getUserRolesById,
 );
 
 module.exports = router;

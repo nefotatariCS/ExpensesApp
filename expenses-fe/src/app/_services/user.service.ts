@@ -9,7 +9,10 @@ import { AllUsersResponse, User } from '../_models/users';
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+  ) {}
 
   getAllUsers(token: string): Promise<AllUsersResponse> {
     const url = `${environment.apiUrl}/api/user/getAll`;
@@ -58,7 +61,7 @@ export class UserService {
   async updateUserById(
     token: string,
     newUserObject: any,
-    updatedUserId: number
+    updatedUserId: number,
   ) {
     const url = `${environment.apiUrl}/api/user/updateUserById/${updatedUserId}`;
     const headers = new HttpHeaders({

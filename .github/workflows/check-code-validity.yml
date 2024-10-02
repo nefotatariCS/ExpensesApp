@@ -2,23 +2,16 @@ name: Prettier Formatting
 
 on:
   push:
-    branches:
-      - main
-      - Add-Unit-Tests
-  pull_request:
-    branches:
-      - main
-
 jobs:
   prettier:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: "18"
 
@@ -50,5 +43,5 @@ jobs:
             echo "No changes detected"
           else
             git commit -m "Apply Prettier formatting"
-            git push
+            git push origin HEAD:$GITHUB_REF_NAME
           fi

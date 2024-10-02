@@ -47,7 +47,7 @@ exports.signin = (req, res) => {
       }
       const decryptedData = CryptoJS.AES.decrypt(
         req.body.encryptedPass,
-        secretKey
+        secretKey,
       ).toString(CryptoJS.enc.Utf8);
 
       var passwordIsValid = bcrypt.compareSync(decryptedData, user.password);

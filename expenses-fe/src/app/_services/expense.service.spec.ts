@@ -76,7 +76,7 @@ describe('ExpenseService', () => {
     });
 
     const req = httpMock.expectOne(
-      `${environment.apiUrl}/api/expenses/getExpenseById/${expenseId}`
+      `${environment.apiUrl}/api/expenses/getExpenseById/${expenseId}`,
     );
     expect(req.request.method).toBe('GET');
     expect(req.request.headers.get('x-access-token')).toBe(token);
@@ -117,7 +117,7 @@ describe('ExpenseService', () => {
       });
 
     const req = httpMock.expectOne(
-      `${environment.apiUrl}/api/expenses/updateExpensesById/${expenseId}`
+      `${environment.apiUrl}/api/expenses/updateExpensesById/${expenseId}`,
     );
     expect(req.request.method).toBe('POST');
     expect(req.request.headers.get('x-access-token')).toBe(token);

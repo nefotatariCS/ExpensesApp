@@ -39,7 +39,7 @@ async function updateUserById(req, res) {
   try {
     const updatedUser = await userService.updateUserById(
       userId,
-      updatedUserData
+      updatedUserData,
     );
     res.status(200).json(updatedUser);
   } catch (error) {
@@ -53,7 +53,7 @@ async function updateUserById(req, res) {
 const disableUser = async (req, res) => {
   const { userId } = req.params;
   logInfo(
-    `We are at disableUser in controller. User to be disabled is ${userId}`
+    `We are at disableUser in controller. User to be disabled is ${userId}`,
   );
   try {
     const updatedUser = await userService.disableUser(userId);

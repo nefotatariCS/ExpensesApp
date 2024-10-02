@@ -14,9 +14,12 @@ export class AuthenticationService {
   private userSubject: BehaviorSubject<User | null>;
   public user: Observable<User | null>;
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+  ) {
     this.userSubject = new BehaviorSubject(
-      JSON.parse(localStorage.getItem('user')!)
+      JSON.parse(localStorage.getItem('user')!),
     );
     this.user = this.userSubject.asObservable();
   }
@@ -34,7 +37,7 @@ export class AuthenticationService {
         localStorage.setItem('user', JSON.stringify(user));
         this.userSubject.next(user);
         return user;
-      })
+      }),
     );
   }
 

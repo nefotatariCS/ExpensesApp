@@ -16,7 +16,7 @@
           formControlName="name"
           [ngClass]="{
             'is-invalid':
-              userForm.get('name')?.invalid && userForm.get('name')?.touched
+              userForm.get('name')?.invalid && userForm.get('name')?.touched,
           }"
         />
         <div
@@ -37,7 +37,7 @@
           [ngClass]="{
             'is-invalid':
               userForm.get('lastName')?.invalid &&
-              userForm.get('lastName')?.touched
+              userForm.get('lastName')?.touched,
           }"
         />
         <div
@@ -61,7 +61,7 @@
           [ngClass]="{
             'is-invalid':
               userForm.get('userName')?.invalid &&
-              userForm.get('userName')?.touched
+              userForm.get('userName')?.touched,
           }"
         />
         <div
@@ -87,7 +87,7 @@
           [ngClass]="{
             'is-invalid':
               userForm.get('password')?.invalid &&
-              userForm.get('password')?.touched
+              userForm.get('password')?.touched,
           }"
         />
         <div
@@ -110,7 +110,7 @@
           formControlName="email"
           [ngClass]="{
             'is-invalid':
-              userForm.get('email')?.invalid && userForm.get('email')?.touched
+              userForm.get('email')?.invalid && userForm.get('email')?.touched,
           }"
         />
         <div
@@ -133,7 +133,7 @@
           [ngClass]="{
             'is-invalid':
               userForm.get('phoneNumber')?.invalid &&
-              userForm.get('phoneNumber')?.touched
+              userForm.get('phoneNumber')?.touched,
           }"
         />
         <div
@@ -157,7 +157,8 @@
           optionLabel="name"
           [ngClass]="{
             'is-invalid':
-              userForm.get('gender')?.invalid && userForm.get('gender')?.touched
+              userForm.get('gender')?.invalid &&
+              userForm.get('gender')?.touched,
           }"
         ></p-dropdown>
         <div

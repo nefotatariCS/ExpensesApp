@@ -41,7 +41,7 @@ async function getAllActiveUserRole() {
 async function getUserRoleById(userRoleId) {
   try {
     logInfo(
-      `We are at getUserRoleById in service. User role id is: ${userRoleId}`
+      `We are at getUserRoleById in service. User role id is: ${userRoleId}`,
     );
     const userRole = await UserRole.findByPk(userRoleId);
     if (!userRole) {

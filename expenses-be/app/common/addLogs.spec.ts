@@ -48,7 +48,7 @@ describe("Logger", () => {
 
     expect(logger.error).toHaveBeenCalledWith(expect.stringContaining(message));
     expect(logger.error).toHaveBeenCalledWith(
-      expect.stringContaining(error.message)
+      expect.stringContaining(error.message),
     );
     expect(logger.error).toHaveBeenCalledTimes(1);
   });

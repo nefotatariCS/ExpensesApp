@@ -79,7 +79,7 @@ describe('UserService', () => {
     });
 
     const req = httpMock.expectOne(
-      `${environment.apiUrl}/api/user/getUserById/${userId}`
+      `${environment.apiUrl}/api/user/getUserById/${userId}`,
     );
     expect(req.request.method).toBe('GET');
     expect(req.request.headers.get('x-access-token')).toBe(token);
@@ -99,7 +99,7 @@ describe('UserService', () => {
     });
 
     const req = httpMock.expectOne(
-      `${environment.apiUrl}/api/user/updateUserById/${userId}`
+      `${environment.apiUrl}/api/user/updateUserById/${userId}`,
     );
     expect(req.request.method).toBe('POST');
     expect(req.request.headers.get('x-access-token')).toBe(token);

@@ -32,7 +32,7 @@ describe('AddUserComponent', () => {
         phoneNumber: '1234567890',
         gender: 'M',
         userRoleId: 1,
-      })
+      }),
     );
     userServiceMock.updateUserById.and.returnValue(Promise.resolve());
     userServiceMock.createNewUser.and.returnValue(Promise.resolve());
@@ -46,7 +46,7 @@ describe('AddUserComponent', () => {
           { id: 1, userRoleDescription: 'Admin' },
           { id: 2, userRoleDescription: 'User' },
         ],
-      })
+      }),
     );
 
     activatedRouteMock = {
@@ -119,7 +119,7 @@ describe('AddUserComponent', () => {
     component.ngOnInit();
     expect(userServiceMock.getUserById).toHaveBeenCalledWith(
       1,
-      'mockAccessToken'
+      'mockAccessToken',
     );
   });
 
@@ -172,7 +172,7 @@ describe('AddUserComponent', () => {
         lastName: 'Doe',
         userName: 'johndoe',
       }),
-      1
+      1,
     );
   });
 
@@ -185,7 +185,7 @@ describe('AddUserComponent', () => {
   it('should call getAllUserRoles on ngOnInit', () => {
     component.ngOnInit();
     expect(userRoleServiceMock.getAllUserRoles).toHaveBeenCalledWith(
-      'mockAccessToken'
+      'mockAccessToken',
     );
   });
 });
