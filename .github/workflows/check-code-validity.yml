@@ -2,6 +2,10 @@ name: Prettier Formatting
 
 on:
   push:
+permissions:
+  contents: write  # Allow write access to repository contents
+  actions: write  # Allow writing/updating workflows
+  
 jobs:
   prettier:
     runs-on: ubuntu-latest
