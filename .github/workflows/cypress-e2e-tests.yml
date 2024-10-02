@@ -1,10 +1,14 @@
 name: Cypress Tests
 
 on:
-  pull_request:
+  workflow_run:
+    workflows: ["Run Unit Tests"]  
+    types:
+      - completed
 
 jobs:
   cypress-tests:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}  # Only run if unit tests are successful
     runs-on: ubuntu-latest
 
     services:
@@ -90,6 +94,7 @@ jobs:
           npx cypress run
         env:
           CYPRESS_BASE_URL: http://localhost:4200
+
       - name: Upload Cypress screenshots
         if: failure()
         uses: actions/upload-artifact@v3
