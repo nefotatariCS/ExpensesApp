@@ -3,7 +3,13 @@ const Sequelize = require("sequelize");
 
 const sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD, {
   host: config.HOST,
-  dialect: config.dialect,
+  dialect: "postgres",
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
   pool: {
     max: config.pool.max,
     min: config.pool.min,
@@ -26,7 +32,7 @@ db.SYSTEMROLES = ["operator", "admin"];
 
 db.expenses = require("../models/expenses/expense.model.js")(
   sequelize,
-  Sequelize,
+  Sequelize
 );
 
 db.user.hasMany(db.expenses, { as: "expenseId" });
