@@ -23,7 +23,7 @@ jobs:
         npm run build
 
     - name: Deploy to Heroku Backend
-      uses: akhileshns/heroku-deploy@v4.1.8
+      uses: akhileshns/heroku-deploy@v3.12.12
       with:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
         heroku_app_name: "expenses-app-be"
