@@ -1,12 +1,7 @@
-name: Run Unit Tests
+name: Run Backend Unit Tests
 
 on:
   push:
-    branches:
-      - main
-      - feature/*
-  pull_request:
-
 jobs:
   unit-tests:
     runs-on: ubuntu-latest
