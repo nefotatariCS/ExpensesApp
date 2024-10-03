@@ -1,10 +1,11 @@
-name: Deploy
+name: Deploy Backend App
 
 on:
-  push:
+  pull_request:
     branches:
       - main
-
+    types:
+      - closed
 jobs:
   deploy-backend:
     runs-on: ubuntu-latest
