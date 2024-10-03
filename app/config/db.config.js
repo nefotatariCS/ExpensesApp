@@ -3,13 +3,8 @@ module.exports = {
   USER: "uciaj6hg079haf",
   PASSWORD: "pb0a2daafddc5f5190e2938dbe015b45c432b6b5f7ede431497b8c05060e67a07",
   DB: "dbna93utrlpmlk",
+  PORT: 5432,
   dialect: "postgres",
-  dialectOptions: {
-    ssl: {
-      require: true, // Ensures SSL is required
-      rejectUnauthorized: false, // Disables rejecting unauthorized certificates
-    },
-  },
   pool: {
     max: 5,
     min: 0,
