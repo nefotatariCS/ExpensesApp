@@ -1,4 +1,4 @@
-name: Prettier Formatting
+name: Prettier Formatting Backend
 
 on:
   push:
@@ -20,21 +20,14 @@ jobs:
       - name: Install Dependencies
         run: |
           pwd
-          cd expenses-be
-          npm install
-
-      - name: Run Prettier
-        run: npx prettier --write .
-
-      - name: Install frontend dependencies
-        run: |
-          pwd
-          cd expenses-fe
           npm install
 
       - name: Install Angular CLI
         run: |
           npm install -g @angular/cli
+
+      - name: Run Prettier
+        run: npx prettier --write .
 
       - name: Check for changes
         env:
