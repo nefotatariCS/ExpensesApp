@@ -5,7 +5,10 @@ module.exports = {
   DB: "dbna93utrlpmlk",
   dialect: "postgres",
   dialectOptions: {
-    ssl: false,
+    ssl: {
+      require: true, // Ensures SSL is required
+      rejectUnauthorized: false, // Disables rejecting unauthorized certificates
+    },
   },
   pool: {
     max: 5,
