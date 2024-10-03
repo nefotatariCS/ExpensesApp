@@ -3,7 +3,7 @@ name: Prettier Formatting Backend
 on:
   push:
 permissions:
-  contents: write  # Allow write access to repository contents  
+  contents: write  # Allow write access to repository   
 jobs:
   prettier:
     runs-on: ubuntu-latest
