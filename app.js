@@ -3,7 +3,7 @@ const cors = require("cors");
 
 const app = express();
 var corsOptions = {
-  origin: "https://expenses-app-fe-25c80f8c3c72.herokuapp.com",
+  origin: "https://expenses-app-frontend-18c65f34b93b.herokuapp.com",
   optionsSuccessStatus: 200,
 };
 
